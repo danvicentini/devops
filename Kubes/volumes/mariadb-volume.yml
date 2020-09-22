@@ -1,0 +1,68 @@
+---
+# Provisionamento do Serviço Maria DB no Cluster
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: mysql
+  clusterIP: None
+
+---
+# PVC - similar ao POD, para armazenamento
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 1Gi # reserva de 1gb de storage para o longhorn
+
+---
+#aplicação, instalação e provisionamento de volumes para o mariadb
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - image: mariadb:10.4
+          name: mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: vicentini1234
+          ports:
+            - containerPort: 3306
+              name: mysql
+          #Endereçamento de caminhos dentro do POD 
+          volumeMounts: 
+            - name: mysql-volume
+              mountPath: /var/lib/mysql
+
+      volumes:
+        - name: mysql-volume
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+
+#kubectl apply -f mariadb-volume.yml

@@ -135,15 +135,6 @@ $ docker-compose down
 ```
 
 
-
-
-
-
-
-
-
-
-
 # Aula 6 - Rancher - Single Node
 
 ### Instalar Rancher - Single Node
@@ -160,19 +151,6 @@ Com o Rancher já rodando, irei adicionar a entrada de cada DNS para o IP de cad
 ```sh
 $ rancher.<dominio> = IP do host A
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Aula 7 - Kubernetes
 
@@ -191,16 +169,6 @@ $ docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kuberne
 ```
 Será um cluster com 3 nós.
 Navegar pelo Rancher e ver os painéis e funcionalidades.
-
-
-
-
-
-
-
-
-
-
 
 
 # Aula 8 - Kubectl
@@ -224,14 +192,6 @@ $ vi ~/.kube/config
 $ kubectl get nodes
 ```
 
-
-
-
-
-
-
-
-
 # Aula 9 - DNS
 
 ### Traefik - DNS
@@ -250,12 +210,6 @@ Agora iremos configurar o DNS pelo qual o Traefik irá responder. No arquivo ui.
 $ cd treinamento-kubernetes/exercicios/
 $ kubectl apply -f ui.yml
 ```
-
-
-
-
-
-
 
 # Aula 10 - Volume
 
