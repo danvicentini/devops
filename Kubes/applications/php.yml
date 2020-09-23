@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-php
+spec:
+  selector:
+    matchLabels:
+      run: my-app-php
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: my-app-php
+    spec:
+      containers:
+      - name: my-app-php
+        image: k8s.gcr.io/hpa-example
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-php
+  labels:
+    run: my-app-php
+spec:
+  ports:
+  - port: 80
+  selector:
+    run: my-app-php
+
+
+#kubectl apply -f php.yml

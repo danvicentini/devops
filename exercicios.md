@@ -226,10 +226,6 @@ $ kubectl apply -f mariadb-longhorn-volume.yml
 
 
 
-
-
-
-
 # Aula 11 - LOG
 
 ### Graylog - LOG
@@ -248,16 +244,6 @@ $ kubectl apply -f graylog.yml
 ```
 Seguir os passos do instrutor para configuração do Graylog.
 
-
-
-
-
-
-
-
-
-
-
 # Aula 12 - Monitoramento
 
 ### Grafana - MONITORAMENTO
@@ -268,14 +254,6 @@ Iremos configurar seguindo as informações do instrutor, e fazer o deployment.
 Será preciso altear os DNS das aplicações para que elas fiquem acessíveis.
 
 Após o deploymnet, entrar no Grafana e Prometheus e mostrar seu funcionamento.
-
-
-
-
-
-
-
-
 
 # Aula 13 - CronJob
 
@@ -304,14 +282,6 @@ Entrar no Rancher para ver os logs e a sequencia de execucao.
 
 
 
-
-
-
-
-
-
-
-
 # Aula 14 - ConfigMap
 
 ### ConfigMap
@@ -323,15 +293,6 @@ Nesse exemplo, iremos criar um ConfigMap, e iremos acessar as informações dent
 $ kubectl apply -f configmap.yml
 ```
 Agora iremos entrar dentro do container e verificar as configurações definidas no ConfigMap.
-
-
-
-
-
-
-
-
-
 
 
 
@@ -397,15 +358,6 @@ $ kubectl apply -f liveness.yml
 $ kubectl describe pod liveness-http 
 $ kubectl get pod liveness-http 
 ```
-
-
-
-
-
-
-
-
-
 
 
 # Aula 17 - SetImage
