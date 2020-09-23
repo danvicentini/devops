@@ -384,17 +384,6 @@ $ kubectl get pods -l app=nginx -L deployment
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
 # Aula 18 - Autoscaling
 
 ### Autoscaling
