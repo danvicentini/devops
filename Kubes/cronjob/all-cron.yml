@@ -1,0 +1,56 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: special-config2
+data:
+  SPECIAL_LEVEL: very
+  SPECIAL_TYPE: charm
+  
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: hello
+  namespace: default
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: test-container
+              image: k8s.gcr.io/busybox
+              command: [ "/bin/sh", "-c", "env" ]
+              envFrom:
+              - configMapRef:
+                  name: special-config2
+          # restartPolicy: Never
+          restartPolicy: OnFailure 
+
+
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: consumeAPI
+  namespace: default
+spec:
+  schedule: "*/40 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: test-container
+              image: k8s.gcr.io/busybox
+              command: [ "curl -v --insecure -XGET -H 'Authorization: Bearer 49c935db-3d4d-4856-83cc-b953b09bcaf6' 'http://127.0.0.1:5000/api/GET'"]
+              envFrom:
+              - configMapRef:
+                  name: special-config2
+          # restartPolicy: Never
+          restartPolicy: OnFailure 
+          
+
+#kubectl apply -f all-cron.yml

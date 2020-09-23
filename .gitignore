@@ -3,3 +3,6 @@
 ################################################################################
 
 /apps/node_app/node_modules
+/apps/aspnet-app/AspnetcoreAPI/bin/Debug/netcoreapp3.1
+/apps/aspnet-app/AspnetcoreAPI/obj
+/apps/aspnet-app/AspnetcoreAPI/.vs/AspnetcoreAPI/v16
